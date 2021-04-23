@@ -20,3 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/Login',[AuthController::class,'login']);
+
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::post('/logout',[AuthController::class,'logout']);
+    Route::apiResource('/todos',TodoController::class);
+});
